@@ -162,4 +162,38 @@ public class JTest {
         x.setC(c.getA());
     }
 
+
+    @Test
+    public void test7() {
+        List<String> list = new ArrayList<String>();          //实例,新建一个96条的list集合,将他平均分成几等份
+        for (int i = 0; i < 12308; i++) {
+            list.add(i + "");
+        }
+        List<List<String>> atList = subList2(list,10);
+        System.out.println(atList);
+    }
+
+    public static <T> List<List<T>> subList2(List<T> list, int pages) {
+        List<List<T>> subList = new ArrayList<>();
+        if (list == null || list.size() == 0) {
+            return subList;
+        }
+        List<T> sub = null;
+        //取每页数量
+        int nums = list.size() / pages;
+        //取多出来的数量
+        int remain = list.size() % pages;
+
+
+        for (int i = 0; i < pages; i++) {
+            if (i < remain) {
+                sub = list.subList(i * (nums + 1), (i + 1) * (nums + 1));
+            } else {
+                sub = list.subList((i - remain) * nums + remain * (nums + 1),
+                    Math.min(((i - remain + 1) * nums + remain * (nums + 1)), list.size()));
+            }
+            subList.add(sub);
+        }
+        return subList;
+    }
 }

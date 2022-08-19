@@ -1,7 +1,7 @@
 /*
  * Project: sgtSpringBootDemo
  *
- * File Created at 2022-07-11
+ * File Created at 2022-08-08
  *
  * Copyright 2012-2015 Greenline.com Corporation Limited.
  * All rights reserved.
@@ -12,22 +12,28 @@
  * accordance with the terms of the license agreement you entered into
  * with Greenline.com.
  */
-package com.sgt.service.aysnc;
+package com.sgt;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+import org.junit.Test;
 
 /**
  * TODO
  *
  * @author sungt
  * @version V1.0
- * @since 2022-07-11 14:10
+ * @since 2022-08-08 16:53
  */
-public interface AysncService {
+public class AysncTest {
 
-    void testAysnc();
-    void testAysnc2();
+    @Test
+    public void test1(){
+        List<String> list = new ArrayList<String>();          //实例,新建一个96条的list集合,将他平均分成几等份
+        for (int i = 0; i < 5; i++) {
 
-    String sayHello();
-
-    String testAysnc3();
-
+        }
+    }
 }

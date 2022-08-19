@@ -122,4 +122,9 @@ public class HelloController {
             (rs, rowNum) -> new Result(left, right, rs.getLong("answer")));
     }
 
+    @RequestMapping("testtablefuture")
+    void testTableFuture() {
+        aysncService.testAysnc3();
+    }
+
 }

@@ -1,7 +1,7 @@
 /*
  * Project: sgtSpringBootDemo
  *
- * File Created at 2022-07-11
+ * File Created at 2022-07-25
  *
  * Copyright 2012-2015 Greenline.com Corporation Limited.
  * All rights reserved.
@@ -12,22 +12,19 @@
  * accordance with the terms of the license agreement you entered into
  * with Greenline.com.
  */
-package com.sgt.service.aysnc;
+package com.sgt.service.stock;
 
 /**
  * TODO
  *
  * @author sungt
  * @version V1.0
- * @since 2022-07-11 14:10
+ * @since 2022-07-25 18:23
  */
-public interface AysncService {
-
-    void testAysnc();
-    void testAysnc2();
-
-    String sayHello();
-
-    String testAysnc3();
-
+public interface IStockCallback {
+    /**
+     * 获取库存
+     * @return
+     */
+    int getStock();
 }

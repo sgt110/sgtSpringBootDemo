@@ -17,11 +17,19 @@ package com.sgt.service.aysnc.impl;
 import com.sgt.service.aysnc.AysncService;
 import com.sgt.service.aysnc.thread.AskThread;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +43,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class AysncServiceImpl implements AysncService {
+
+    @Resource
+    @Qualifier(value = "taskExecutor")
+    private Executor asyncExecutor;
 
     @Override
     public void testAysnc() {
@@ -68,6 +80,27 @@ public class AysncServiceImpl implements AysncService {
         return "hello";
     }
 
+    @Override
+    public String testAysnc3() {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        List<CompletableFuture<Void>> completableFutureList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            Integer test2 = i;
+            CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
+                setHealthIndicator(test2);
+            }, asyncExecutor);
+            completableFutureList.add(completableFuture);
+        }
+        setHealthIndicator3();
+        CompletableFuture< Void > headerFuture = CompletableFuture.allOf(completableFutureList.toArray(new CompletableFuture[]{}));
+        headerFuture.join();
+        stopWatch.stop();
+        System.out.println("请求健康档案耗时：" + stopWatch.getTotalTimeSeconds() + "秒！");
+        setHealthIndicator2();
+        return "";
+    }
+
     public static Integer calc(Integer para) {
         try {
             //模拟一个长时间的执行
@@ -76,5 +109,28 @@ public class AysncServiceImpl implements AysncService {
             e.printStackTrace();
         }
         return para * para;
+    }
+
+    private void setHealthIndicator(Integer test2){
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        }catch (Exception e){
+            log.info("1111");
+        }
+        System.out.println(test2);
+    }
+    private void setHealthIndicator2(){
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        }catch (Exception e){
+            log.info("1111");
+        }
+    }
+    private void setHealthIndicator3(){
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        }catch (Exception e){
+            log.info("1111");
+        }
     }
 }
