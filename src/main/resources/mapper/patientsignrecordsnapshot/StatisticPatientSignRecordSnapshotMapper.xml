@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sgt.dal.patientsignrecordsnapshot.StatisticPatientSignRecordSnapshotMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap"
+               type="com.sgt.dal.patientsignrecordsnapshot.po.StatisticPatientSignRecordSnapshotPO">
+        <!--固定的自增主键-->
+        <result column="pk_id" property="pkId"/>
+        <result column="id" property="id"/>
+        <result column="record_type" property="recordType"/>
+        <result column="hospital_code" property="hospitalCode"/>
+        <result column="hospital_name" property="hospitalName"/>
+        <result column="patient_code" property="patientCode"/>
+        <result column="card_no" property="cardNo"/>
+        <result column="patient_name" property="patientName"/>
+        <result column="patient_sex" property="patientSex"/>
+        <result column="patient_age" property="patientAge"/>
+        <result column="patient_phone" property="patientPhone"/>
+        <result column="insurance_type" property="insuranceType"/>
+        <result column="doct_name" property="doctName"/>
+        <result column="hmd_name" property="hmdName"/>
+        <result column="disease_name" property="diseaseName"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="sign_date" property="signDate"/>
+        <result column="sign_state" property="signState"/>
+        <result column="sign_source" property="signSource"/>
+        <result column="sign_operator" property="signOperator"/>
+        <result column="disease_service" property="diseaseService"/>
+        <result column="sign_modified_time" property="signModifiedTime"/>
+        <result column="stop_time" property="stopTime"/>
+        <result column="stop_reason" property="stopReason"/>
+        <result column="hash" property="hash"/>
+        <result column="gmt_created" property="gmtCreated"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+    <!--表基础字段sql-->
+    <sql id="Base_Column_List">
+        pk_id
+        ,id
+        ,record_type
+        ,hospital_code
+        ,hospital_name
+        ,patient_code
+        ,card_no
+        ,patient_name
+        ,patient_sex
+        ,patient_age
+        ,patient_phone
+        ,insurance_type
+        ,doct_name
+        ,hmd_name
+        ,disease_name
+        ,start_date
+        ,end_date
+        ,sign_date
+        ,sign_state
+        ,stop_time
+        ,stop_reason
+        ,hash
+        ,gmt_created
+        ,gmt_modified
+    </sql>
+
+    <sql id="base_query">
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            is_deleted=0
+            <if test="null != po.id and '' != po.id">
+                and id = #{po.id}
+            </if>
+            <if test="null != po.recordType ">
+                and record_type = #{po.recordType}
+            </if>
+            <if test="null != po.hospitalCode and '' != po.hospitalCode">
+                and hospital_code = #{po.hospitalCode}
+            </if>
+            <if test="null != po.hospitalName and '' != po.hospitalName">
+                and hospital_name = #{po.hospitalName}
+            </if>
+            <if test="null != po.patientCode and '' != po.patientCode">
+                and patient_code = #{po.patientCode}
+            </if>
+            <if test="null != po.cardNo and '' != po.cardNo">
+                and card_no = #{po.cardNo}
+            </if>
+            <if test="null != po.patientName and '' != po.patientName">
+                and patient_name = #{po.patientName}
+            </if>
+            <if test="null != po.patientSex ">
+                and patient_sex = #{po.patientSex}
+            </if>
+            <if test="null != po.patientAge ">
+                and patient_age = #{po.patientAge}
+            </if>
+            <if test="null != po.patientPhone and '' != po.patientPhone">
+                and patient_phone = #{po.patientPhone}
+            </if>
+            <if test="null != po.insuranceType ">
+                and insurance_type = #{po.insuranceType}
+            </if>
+            <if test="null != po.doctName and '' != po.doctName">
+                and doct_name = #{po.doctName}
+            </if>
+            <if test="null != po.hmdName and '' != po.hmdName">
+                and hmd_name = #{po.hmdName}
+            </if>
+            <if test="null != po.diseaseName and '' != po.diseaseName">
+                and disease_name = #{po.diseaseName}
+            </if>
+            <if test="null != po.startDate ">
+                and start_date = #{po.startDate}
+            </if>
+            <if test="null != po.endDate ">
+                and end_date = #{po.endDate}
+            </if>
+            <if test="null != po.signDate ">
+                and sign_date = #{po.signDate}
+            </if>
+            <if test="null != po.signState ">
+                and sign_state = #{po.signState}
+            </if>
+            <if test="null != po.stopTime ">
+                and stop_time = #{po.stopTime}
+            </if>
+            <if test="null != po.stopReason ">
+                and stop_reason = #{po.stopReason}
+            </if>
+        </trim>
+    </sql>
+    <insert id="insert" keyColumn="pk_id" keyProperty="po.pkId"
+            parameterType="com.sgt.dal.patientsignrecordsnapshot.po.StatisticPatientSignRecordSnapshotPO"
+            useGeneratedKeys="true">
+        insert into statistic_patient_sign_record_snapshot(id,
+                                                  record_type,
+                                                  hospital_code,
+                                                  hospital_name,
+                                                  patient_code,
+                                                  card_no,
+                                                  patient_name,
+                                                  patient_sex,
+                                                  patient_age,
+                                                  patient_phone,
+                                                  insurance_type,
+                                                  doct_name,
+                                                  hmd_name,
+                                                  disease_name,
+                                                  start_date,
+                                                  end_date,
+                                                  sign_date,
+                                                  sign_state,
+                                                  stop_time,
+                                                  stop_reason,
+                                                  hash,
+                                                  is_deleted,
+                                                  gmt_created,
+                                                  gmt_modified)
+        values (#{po.id},
+                #{po.recordType},
+                #{po.hospitalCode},
+                #{po.hospitalName},
+                #{po.patientCode},
+                #{po.cardNo},
+                #{po.patientName},
+                #{po.patientSex},
+                #{po.patientAge},
+                #{po.patientPhone},
+                #{po.insuranceType},
+                #{po.doctName},
+                #{po.hmdName},
+                #{po.diseaseName},
+                #{po.startDate},
+                #{po.endDate},
+                #{po.signDate},
+                #{po.signState},
+                #{po.stopTime},
+                #{po.stopReason},
+                #{po.hash},
+                0,
+                now(),
+                now())
+    </insert>
+    <insert id="batchInsert">
+        insert into statistic_patient_sign_record_snapshot(id,
+                                                           record_type,
+                                                           hospital_code,
+                                                           hospital_name,
+                                                           patient_code,
+                                                           card_no,
+                                                           patient_name,
+                                                           patient_sex,
+                                                           patient_age,
+                                                           patient_phone,
+                                                           insurance_type,
+                                                           doct_name,
+                                                           hmd_name,
+                                                           disease_name,
+                                                           start_date,
+                                                           end_date,
+                                                           sign_date,
+                                                           sign_state,
+                                                           stop_time,
+                                                           stop_reason,
+                                                           hash,
+                                                           is_deleted,
+                                                           gmt_created,
+                                                           gmt_modified)
+        values
+        <foreach collection="poList" item="po" separator=",">
+            (#{po.id},
+            #{po.recordType},
+            #{po.hospitalCode},
+            #{po.hospitalName},
+            #{po.patientCode},
+            #{po.cardNo},
+            #{po.patientName},
+            #{po.patientSex},
+            #{po.patientAge},
+            #{po.patientPhone},
+            #{po.insuranceType},
+            #{po.doctName},
+            #{po.hmdName},
+            #{po.diseaseName},
+            #{po.startDate},
+            #{po.endDate},
+            #{po.signDate},
+            #{po.signState},
+            #{po.stopTime},
+            #{po.stopReason},
+            #{po.hash},
+            0,
+            now(),
+            now())
+        </foreach>
+    </insert>
+
+    <!--列表查询-->
+    <select id="list"
+            parameterType="com.sgt.dal.patientsignrecordsnapshot.po.StatisticPatientSignRecordSnapshotPO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        statistic_patient_sign_record_snapshot
+    </select>
+
+</mapper>

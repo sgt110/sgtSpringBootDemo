@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sgt.dal.nhsa.NhsaReportStatisticsMapper">
+
+    <resultMap id="BaseResultMap" type="com.sgt.dal.nhsa.po.NhsaEnterGroupRecordPO">
+        <result property="pkId" column="pk_id" jdbcType="INTEGER"/>
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="cardNo" column="card_no" jdbcType="VARCHAR"/>
+        <result property="signRecordCode" column="sign_record_code" jdbcType="VARCHAR"/>
+        <result property="groupManagementCode" column="group_management_code" jdbcType="VARCHAR"/>
+        <result property="statusCode" column="status_code" jdbcType="INTEGER"/>
+        <result property="statusDesc" column="status_desc" jdbcType="VARCHAR"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="operator" column="operator" jdbcType="VARCHAR"/>
+        <result property="apiRecordId" column="api_record_id" jdbcType="VARCHAR"/>
+        <result property="enterGroupId" column="enter_group_id" jdbcType="VARCHAR"/>
+        <result property="signRecordSnapshotId" column="sign_record_snapshot_id" jdbcType="VARCHAR"/>
+        <result property="gmtCreated" column="gmt_created" jdbcType="TIMESTAMP"/>
+        <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+        <result property="gmtDeleted" column="gmt_deleted" jdbcType="TIMESTAMP"/>
+        <result property="isDeleted" column="is_deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into nhsa_enter_group_record (id, card_no, sign_record_code, group_management_code, status_code,
+        status_desc,
+        content, creator, operator, api_record_id, enter_group_id,sign_record_snapshot_id, gmt_created,
+        gmt_modified, is_deleted)
+        values
+        <foreach collection="poList" item="po" separator=",">
+            (#{po.id}, #{po.cardNo}, #{po.signRecordCode}, #{po.groupManagementCode}, #{po.statusCode}, #{po.statusDesc}, #{po.content},
+            #{po.creator}, #{po.operator}, #{po.apiRecordId}, #{po.enterGroupId},#{po.signRecordSnapshotId},
+            now(),#{po.gmtModified},0)
+
+        </foreach>
+    </insert>
+
+
+    <select id="list"
+            parameterType="com.sgt.dal.nhsa.po.NhsaEnterGroupRecordPO"
+            resultMap="BaseResultMap">
+        select
+            pk_id, id, card_no, sign_record_code, group_management_code, status_code, status_desc, content, creator, operator, api_record_id, enter_group_id, gmt_created, gmt_modified, gmt_deleted, is_deleted
+        from nhsa_enter_group_record
+        order by gmt_modified desc
+        LIMIT 200
+    </select>
+</mapper>

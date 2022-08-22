@@ -22,6 +22,7 @@ import com.alibaba.fastjson.JSON;
 import com.sgt.bo.DiseaseMedicareRelaImportBO;
 import com.sgt.bo.TestBO;
 import com.sgt.bo.TestBO2;
+import com.sgt.util.MyDateUtils;
 
 import java.awt.print.Book;
 import java.io.FileNotFoundException;
@@ -30,7 +31,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
@@ -171,6 +174,19 @@ public class JTest {
         }
         List<List<String>> atList = subList2(list,10);
         System.out.println(atList);
+    }
+
+    @Test
+    public void test() {
+        Random random = new Random();
+        for (int i = 0; i < 1; i++) {
+            System.out.println(random.nextInt(10102));
+        }
+        System.out.println(MyDateUtils.format(new Date(), MyDateUtils.FORMAT_YMDHMS_SHORT));
+        System.out.println(MyDateUtils.parse("2022-07-1 00:00:00", MyDateUtils.FORMAT_YMDHMS_SHORT));
+        System.out.println(MyDateUtils.parse("2022-07-9 00:00:00", MyDateUtils.FORMAT_YMDHMS_SHORT));
+        System.out.println(MyDateUtils.parse("2022-07-10 00:00:00", MyDateUtils.FORMAT_YMDHMS_SHORT));
+        System.out.println(MyDateUtils.parse("2022-07-31 00:00:00", MyDateUtils.FORMAT_YMDHMS_SHORT));
     }
 
     public static <T> List<List<T>> subList2(List<T> list, int pages) {
