@@ -30,6 +30,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -151,7 +152,7 @@ public class JTest {
                 book.setDiseaseName("海贼王" + i*j);
                 book.setMedicareDiseaseName("海贼王" + i*j);
                 book.setZfje("支付宝");
-                book.setZfmc(new BigDecimal(1));
+                book.setZfmc(new BigDecimal(1).divide(BigDecimal.valueOf((j+1)),4, RoundingMode.HALF_EVEN));
 
                 list.add(book);
             }

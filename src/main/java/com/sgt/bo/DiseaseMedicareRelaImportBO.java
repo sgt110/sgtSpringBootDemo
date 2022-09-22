@@ -10,6 +10,7 @@ package com.sgt.bo;
 
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.format.NumberFormat;
 import com.alibaba.excel.annotation.write.style.ContentLoopMerge;
 
 import java.math.BigDecimal;
@@ -69,7 +70,8 @@ public class DiseaseMedicareRelaImportBO {
     /**
      * 平台疾病名称
      */
-    @ExcelProperty(value = "自费金额")
+    @ExcelProperty(value = "百分比")
+    @NumberFormat("#.##%")
     private BigDecimal zfmc;
 
     /**
