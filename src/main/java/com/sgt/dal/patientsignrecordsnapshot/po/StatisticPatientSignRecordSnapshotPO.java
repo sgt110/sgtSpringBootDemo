@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.validation.annotation.Validated;
+
 import lombok.Data;
 
 /**

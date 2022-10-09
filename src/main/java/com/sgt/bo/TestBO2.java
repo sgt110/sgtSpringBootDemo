@@ -29,4 +29,12 @@ public class TestBO2 {
     private Integer a;
 
     private Integer b;
+
+    public TestBO2() {
+    }
+
+    public TestBO2(Integer a, Integer b) {
+        this.a = a;
+        this.b = b;
+    }
 }

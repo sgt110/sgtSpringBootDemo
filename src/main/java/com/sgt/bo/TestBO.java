@@ -28,4 +28,13 @@ public class TestBO {
     private Integer a;
     private Integer c;
     private TestBO2 b;
+
+    public TestBO(Integer a, Integer c, TestBO2 b) {
+        this.a = a;
+        this.c = c;
+        this.b = b;
+    }
+
+    public TestBO() {
+    }
 }

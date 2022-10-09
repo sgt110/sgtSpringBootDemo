@@ -17,15 +17,12 @@ package com.sgt;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
-import com.alibaba.excel.write.metadata.WriteTable;
 import com.alibaba.fastjson.JSON;
 import com.sgt.bo.DiseaseMedicareRelaImportBO;
 import com.sgt.bo.TestBO;
 import com.sgt.bo.TestBO2;
 import com.sgt.util.MyDateUtils;
 
-import java.awt.print.Book;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,7 +33,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 
 /**

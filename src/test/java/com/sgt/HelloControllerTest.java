@@ -1,28 +1,22 @@
 package com.sgt;
 
-import com.jayway.restassured.RestAssured;
-import com.sgt.bo.TestBO;
-import com.sgt.bo.TestEvent;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-
 import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.is;
+
+import com.jayway.restassured.RestAssured;
+import com.sgt.bo.TestBO;
+import com.sgt.bo.TestEvent;
 
 import java.util.UUID;
 
 import javax.annotation.Resource;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.test.context.web.WebAppConfiguration;
+
 @SpringBootTest(classes = App.class)
 @WebAppConfiguration
 public class HelloControllerTest {
@@ -30,7 +24,7 @@ public class HelloControllerTest {
     @Resource
     private ApplicationEventPublisher publisher;
 
-    @Before
+
     public void setUp() throws Exception {
         RestAssured.port = port;
     }

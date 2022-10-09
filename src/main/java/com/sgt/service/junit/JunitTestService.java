@@ -1,7 +1,7 @@
 /*
  * Project: sgtSpringBootDemo
  *
- * File Created at 2022-08-08
+ * File Created at 2022-10-08
  *
  * Copyright 2012-2015 Greenline.com Corporation Limited.
  * All rights reserved.
@@ -12,27 +12,19 @@
  * accordance with the terms of the license agreement you entered into
  * with Greenline.com.
  */
-package com.sgt;
+package com.sgt.service.junit;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
+import com.sgt.bo.TestBO;
+import com.sgt.bo.TestBO2;
 
 /**
  * TODO
  *
  * @author sungt
  * @version V1.0
- * @since 2022-08-08 16:53
+ * @since 2022-10-08 16:56
  */
-public class AysncTest {
+public interface JunitTestService {
 
-    @Test
-    public void test1(){
-        List<String> list = new ArrayList<String>();          //实例,新建一个96条的list集合,将他平均分成几等份
-        for (int i = 0; i < 5; i++) {
-
-        }
-    }
+    TestBO getByBo(TestBO2 testBO2);
 }
