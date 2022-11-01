@@ -6,6 +6,9 @@ import com.sgt.dal.nhsa.NhsaReportStatisticsMapper
 import com.sgt.dal.nhsa.po.NhsaEnterGroupRecordPO
 import com.sgt.dal.patientsignrecordsnapshot.StatisticPatientSignRecordSnapshotMapper
 import com.sgt.dal.patientsignrecordsnapshot.po.StatisticPatientSignRecordSnapshotPO
+import com.sgt.service.junit.helper.JunitTestHelper
+import org.junit.runner.RunWith
+import org.mockito.Mockito
 import spock.lang.Specification
 import spock.lang.Title
 import spock.lang.Unroll
@@ -28,7 +31,8 @@ import spock.lang.Unroll
 class SpockTestServiceImplTest extends Specification {
     StatisticPatientSignRecordSnapshotMapper snapshotMapper = Mock(StatisticPatientSignRecordSnapshotMapper)
     NhsaReportStatisticsMapper nhsaReportStatisticsMapper = Mock(NhsaReportStatisticsMapper)
-    def junitTestService = new JunitTestServiceImpl(mapper: snapshotMapper, nhsaReportStatisticsMapper: nhsaReportStatisticsMapper)
+    JunitTestHelper junitTestHelper = Mockito.spy(JunitTestHelper)
+    def junitTestService = new JunitTestServiceImpl(mapper: snapshotMapper, nhsaReportStatisticsMapper: nhsaReportStatisticsMapper,junitTestHelper: junitTestHelper)
 
     @Unroll
     def "testGetByBo#title"() {
@@ -59,5 +63,23 @@ class SpockTestServiceImplTest extends Specification {
 
     private List<NhsaEnterGroupRecordPO> getList() {
         return [new NhsaEnterGroupRecordPO(signRecordCode: "signRecordCode")]
+    }
+
+    @Unroll
+    def "testGetByBo2#title"() {
+        given: "准备"
+//        Mockito.when(junitTestHelper.testVoid()).thenCallRealMethod()
+//        Mockito.doCallRealMethod().when(junitTestHelper).testVoid()
+
+        when: "执行方法"
+        def res = junitTestService.getByBo2(testBO2)
+
+        then: "校验结果"
+        res == resList
+
+        where: "设置数据"
+        title | testBO2           || resList
+        "成功1" | new TestBO2(0, 0) || new TestBO(0, 1, new TestBO2(0, 0))
+        "成功2" | new TestBO2(1, 0) || new TestBO(1, 1, new TestBO2(1, 0))
     }
 }

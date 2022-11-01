@@ -16,6 +16,7 @@ package com.sgt;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,11 +29,20 @@ import org.junit.jupiter.api.Test;
  */
 public class AysncTest {
 
-    @Test
-    public void test1(){
-        List<String> list = new ArrayList<String>();          //实例,新建一个96条的list集合,将他平均分成几等份
-        for (int i = 0; i < 5; i++) {
+    private static AtomicInteger num = new AtomicInteger(0);
 
-        }
+    public static void main(String[] args) throws InterruptedException {
+        Runnable runnable = () -> {
+            for (int i = 0; i < 1000000000; i++) {
+                num.getAndAdd(1);
+            }
+            System.out.println(Thread.currentThread().getName() + "执行结束!");
+        };
+
+        Thread t1 = new Thread(runnable);
+        t1.start();
+
+        Thread.sleep(1000);
+        System.out.println("324234234234");
     }
 }

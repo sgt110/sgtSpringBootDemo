@@ -1,7 +1,7 @@
 /*
  * Project: sgtSpringBootDemo
  *
- * File Created at 2022-10-08
+ * File Created at 2022-11-01
  *
  * Copyright 2012-2015 Greenline.com Corporation Limited.
  * All rights reserved.
@@ -12,21 +12,25 @@
  * accordance with the terms of the license agreement you entered into
  * with Greenline.com.
  */
-package com.sgt.service.junit;
+package com.sgt.service.junit.helper;
 
-import com.sgt.bo.TestBO;
 import com.sgt.bo.TestBO2;
+
+import org.springframework.stereotype.Component;
 
 /**
  * TODO
  *
  * @author sungt
  * @version V1.0
- * @since 2022-10-08 16:56
+ * @since 2022-11-01 10:50
  */
-public interface JunitTestService {
+@Component
+public class JunitTestHelper {
 
-    TestBO getByBo(TestBO2 testBO2);
+    public void testVoid(){
+//        testBO2.setA(1111);
+        System.out.println(11111);
+    }
 
-    TestBO getByBo2(TestBO2 testBO2);
 }

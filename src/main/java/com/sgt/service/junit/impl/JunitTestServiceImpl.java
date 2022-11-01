@@ -21,6 +21,7 @@ import com.sgt.dal.nhsa.po.NhsaEnterGroupRecordPO;
 import com.sgt.dal.patientsignrecordsnapshot.StatisticPatientSignRecordSnapshotMapper;
 import com.sgt.dal.patientsignrecordsnapshot.po.StatisticPatientSignRecordSnapshotPO;
 import com.sgt.service.junit.JunitTestService;
+import com.sgt.service.junit.helper.JunitTestHelper;
 
 import java.util.List;
 
@@ -42,6 +43,8 @@ public class JunitTestServiceImpl implements JunitTestService {
     private StatisticPatientSignRecordSnapshotMapper mapper;
     @Resource
     private NhsaReportStatisticsMapper nhsaReportStatisticsMapper;
+    @Resource
+    private JunitTestHelper junitTestHelper;
 
     @Override
     public TestBO getByBo(TestBO2 testBO2) {
@@ -54,5 +57,14 @@ public class JunitTestServiceImpl implements JunitTestService {
         }else {
             return new TestBO(0, 0, testBO2);
         }
+    }
+
+    @Override
+    public TestBO getByBo2(TestBO2 testBO2) {
+
+        junitTestHelper.testVoid();
+
+        return new TestBO(testBO2.getA(), 1, testBO2);
+
     }
 }
