@@ -40,4 +40,37 @@ public class OtherTest {
 
     }
 
+    @Test
+    public void test2(){
+        try {
+            testThrow();
+        }finally {
+            System.out.println("11111");
+        }
+        System.out.println("22222");
+    }
+
+    @Test
+    public void test3(){
+        final int COUNT_BITS = Integer.SIZE - 3;
+        final int CAPACITY   = (1 << COUNT_BITS) - 1;
+
+        // runState is stored in the high-order bits
+         final int RUNNING    = -1 << COUNT_BITS;
+        final int SHUTDOWN   =  0 << COUNT_BITS;
+        final int STOP       =  1 << COUNT_BITS;
+        final int TIDYING    =  2 << COUNT_BITS;
+        final int TERMINATED =  3 << COUNT_BITS;
+
+        System.out.println(Integer.toBinaryString(-1));
+        System.out.println(Integer.toBinaryString(RUNNING));
+        System.out.println(Integer.toBinaryString(STOP));
+        System.out.println(Integer.toBinaryString(TIDYING));
+        System.out.println(Integer.toBinaryString(TERMINATED));
+    }
+
+    private void testThrow(){
+        throw new RuntimeException("cscs");
+    }
+
 }
