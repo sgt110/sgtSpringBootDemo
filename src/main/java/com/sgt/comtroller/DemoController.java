@@ -14,6 +14,7 @@
  */
 package com.sgt.comtroller;
 
+import com.sgt.service.testdoubledecimal.TestDoubleDecimalService;
 import com.sgt.service.nhsa.StatisticPatientSignRecordService;
 
 import javax.annotation.Resource;
@@ -37,6 +38,9 @@ public class DemoController {
     @Resource
     private StatisticPatientSignRecordService statisticPatientSignRecordService;
 
+    @Resource
+    private TestDoubleDecimalService testDoubleDecimalService;
+
     @RequestMapping("/test")
     public void test() throws InterruptedException {
         System.out.println("start");
@@ -51,5 +55,12 @@ public class DemoController {
     @GetMapping("/initnhsaentergrouprecorddata")
     public void initNhsaEnterGroupRecordData() {
         statisticPatientSignRecordService.initNhsaEnterGroupRecordData();
+    }
+
+
+    @GetMapping("/testdoubledecimal")
+    public void testDoubleDecimal() {
+        testDoubleDecimalService.insert();
+        testDoubleDecimalService.list();
     }
 }
