@@ -22,6 +22,11 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
@@ -99,6 +104,35 @@ public class AysncServiceImpl implements AysncService {
         System.out.println("请求健康档案耗时：" + stopWatch.getTotalTimeSeconds() + "秒！");
         setHealthIndicator2();
         return "";
+    }
+
+    @Override
+    public String testAysnc4() {
+        ExecutorService executorService = new ThreadPoolExecutor(2,3,0,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<>(10)){
+            @Override
+            protected void afterExecute(Runnable r, Throwable t){
+                if (t!=null){
+                    System.out.println("afterExecute里面获取到execute提交的异常信息，处理异常"+t.getMessage());
+                }
+                if (r instanceof FutureTask){
+                    try {
+                        Future<?> future = (Future<?>) r;
+                        future.get();
+                    }catch (Exception e){
+                        System.out.println("afterExecute里面获取到submit提交的异常信息，处理异常"+e);
+                    }
+                }
+            }
+        };
+        executorService.execute(() -> {
+            System.out.println("execute进入了task方法！！！");
+            int i = 1 / 0;
+        });
+        executorService.submit(() -> {
+            System.out.println("execute进入了task方法！！！");
+            int i = 1 / 0;
+        });
+        return null;
     }
 
     public static Integer calc(Integer para) {

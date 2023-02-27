@@ -30,4 +30,6 @@ public interface AysncService {
 
     String testAysnc3();
 
+    String testAysnc4();
+
 }
