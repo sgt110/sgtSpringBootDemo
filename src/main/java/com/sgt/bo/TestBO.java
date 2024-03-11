@@ -16,6 +16,8 @@ package com.sgt.bo;
 
 import lombok.Data;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * TODO
  *
@@ -24,6 +26,7 @@ import lombok.Data;
  * @since 2022-01-04 13:56
  */
 @Data
+@XmlRootElement
 public class TestBO {
     private Integer a;
     private Integer c;
@@ -33,6 +36,11 @@ public class TestBO {
         this.a = a;
         this.c = c;
         this.b = b;
+    }
+
+    public TestBO(Integer a, Integer c) {
+        this.a = a;
+        this.c = c;
     }
 
     public TestBO() {

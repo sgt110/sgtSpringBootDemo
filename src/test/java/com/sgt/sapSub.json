@@ -1,0 +1,54 @@
+{
+  "ET_ZP09": [
+    {
+      "PERNR": "00143018",
+      "BNKSA": "0",
+      "BANKN": "N",
+      "BEGDA": "2016-08-01",
+      "EMFTX": "",
+      "ZWECK": "6217730801095751",
+      "BANKL": "00006",
+      "BANKS": "CN",
+      "WAERS": "CNY",
+      "ZLSCH": "T",
+      "ANZHL": "0.00"
+    }
+  ],
+  "ET_ZP16": [
+    {
+      "PERNR": "00143018",
+      "BEGDA": "2013-11-01",
+      "CTEDT": "0000-00-00",
+      "CTNUM": "",
+      "PRBZT": "0",
+      "WERKS": "",
+      "ZHTQDCS": "",
+      "ZREMARKS1": "",
+      "CTTYP": "20",
+      "PRBEH": "012",
+      "ZWYPK": "0.00",
+      "ZPYLX": ""
+    }
+  ],
+  "ET_ZP21": [],
+  "ET_ZP22": [],
+  "ET_ZP34": [],
+  "ET_ZP36": [],
+  "ET_ZP37": [],
+  "ET_ZP41": [],
+  "ET_ZP85": [
+    {
+      "PERNR": "00143018",
+      "ICTYP": "01",
+      "ICNUM": "33012619750223442X",
+      "BEGDA": "2016-06-01",
+      "ENDDA": "9999-12-31",
+      "AUTH1": "",
+      "ISSPL": "",
+      "USEFR": "0000-00-00",
+      "USETO": "0000-00-00",
+      "ZSFZDI": "",
+      "ASTAT": "2"
+    }
+  ]
+}
