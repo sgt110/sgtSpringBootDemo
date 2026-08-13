@@ -31,9 +31,20 @@ public class AysncTest {
 
     private static AtomicInteger num = new AtomicInteger(0);
 
+    private static final ThreadLocal<Integer> threadLocalCounter = ThreadLocal.withInitial(() -> 0);
+
     public static void main(String[] args) throws InterruptedException {
         Runnable runnable = () -> {
-            for (int i = 0; i < 1000000000; i++) {
+            Integer threadNum = threadLocalCounter.get();
+            for (int i = 0; i < 100; i++) {
+                threadLocalCounter.set(threadNum + 1);
+            }
+            System.out.println(Thread.currentThread().getName() + "执行结束!");
+        };
+
+
+        Runnable runnable2 = () -> {
+            for (int i = 0; i < 1000; i++) {
                 num.getAndAdd(1);
             }
             System.out.println(Thread.currentThread().getName() + "执行结束!");
@@ -42,7 +53,11 @@ public class AysncTest {
         Thread t1 = new Thread(runnable);
         t1.start();
 
+
+        Thread t2 = new Thread(runnable2);
+        t2.start();
+
         Thread.sleep(1000);
-        System.out.println("324234234234");
+        System.out.println(num);
     }
 }

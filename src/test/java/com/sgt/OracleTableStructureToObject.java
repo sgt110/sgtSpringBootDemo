@@ -10,24 +10,26 @@ import java.sql.*;
 public class OracleTableStructureToObject {
 
     // Replace with your Oracle database connection details
-    private static final String URL = "jdbc:oracle:thin:@172.24.120.224:1521:ncdb";
-    private static final String USER = "test_20231125";
-    private static final String PASSWORD = "test_20231125A";
+    private static final String URL = "jdbc:oracle:thin:@192.168.8.133:1521:ncdb";
+    private static final String USER = "ncc";
+    private static final String PASSWORD = "ncc_20241012";
 
     public static void main(String[] args) {
         Connection conn = null;
         try {
             // Registering the Oracle driver
-            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             // Get a connection to the database
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
             // Get metadata about the table
             DatabaseMetaData dbmd = conn.getMetaData();
             // Replace 'YOUR_TABLE_NAME' with the actual name of your table
-            ResultSet rs = dbmd.getColumns(null, null, "FA_NEWASSET_LINK_MIDDLE", null);
+            ResultSet rs = dbmd.getColumns(null, null, "CMP_BANK_CLAIM_RECEIPT", null);
 
             StringBuilder classContent = new StringBuilder();
-            classContent.append("public class YourTableName {\n");
+            classContent.append("import nc.vo.pub.SuperVO;\n" +
+                    "import nc.vo.pub.lang.UFDateTime;\n");
+            classContent.append("public class BankClaimReceiptVO extends SuperVO {\n");
 
             while (rs.next()) {
                 String name = rs.getString("COLUMN_NAME");

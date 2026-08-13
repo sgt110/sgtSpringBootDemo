@@ -2,12 +2,13 @@ package com.sgt.bo;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.text.Collator;
 import java.util.Locale;
 import java.util.Map;
 
-public class GlOperQueryBO {
+public class GlOperQueryBO implements Serializable {
 
     /**
      * 操作类型，0，筛选 1排序
